@@ -16,7 +16,7 @@
       es_log_dir: "/opt/elasticsearch/log",
       es_work_dir: "/opt/elasticsearch/temp",
       es_config: {
-        node.name: "192.168.1.101",
+        node.name: "log01",
         cluster.name: "es_cluster",
         discovery.zen.ping.unicast.hosts: "localhost:9301",
         http.port: 9201,
