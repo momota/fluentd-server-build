@@ -1,0 +1,56 @@
+{
+  "template": "logstash-*",
+  "mappings": {
+    "dstat": {
+      "properties": {
+        "dstat": {
+          "properties": {
+            "total_cpu_usage": {
+              "properties": {
+                "usr": { "type": "double" },
+                "sys": { "type": "double" },
+                "hiq": { "type": "double" },
+                "idl": { "type": "double" },
+                "siq": { "type": "double" },
+                "wai": { "type": "double" }
+              }
+            },
+            "memory_usage": {
+              "properties": {
+                "used": { "type": "double" },
+                "buff": { "type": "double" },
+                "cach": { "type": "double" },
+                "free": { "type": "double" }
+              }
+            },
+            "dsk/total": {
+              "properties": {
+                "read": { "type": "double" },
+                "writ": { "type": "double" }
+              }
+            },
+            "paging": {
+              "properties": {
+                "in": { "type": "double" },
+                "out": { "type": "double" }
+              }
+            },
+            "swap": {
+              "properties": {
+                "used": { "type": "double" },
+                "free": { "type": "double" }
+              }
+            },
+            "net/total": {
+              "properties": {
+                "recv": { "type": "double" },
+                "send": { "type": "double" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

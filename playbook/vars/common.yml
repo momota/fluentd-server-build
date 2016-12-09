@@ -1,0 +1,39 @@
+---
+ulimit:
+  config_path: /etc/security/limits.conf
+  config:
+    - name: fluentd
+      limits:
+        - domain: root
+          type: soft
+          item: nofile
+          value: 65536
+        - domain: root
+          type: hard
+          item: nofile
+          value: 65536
+        - domain: '*'
+          type: soft
+          item: nofile
+          value: 65536
+        - domain: '*'
+          type: hard
+          item: nofile
+          value: 65536
+
+tdagent_plugins:
+  - fluent-plugin-df
+  - fluent-plugin-config-expander
+  - fluent-plugin-notifier
+  - fluent-plugin-graphite
+  - fluent-plugin-elasticsearch
+  - fluent-plugin-map
+  - fluent-plugin-dstat
+
+# vars for elasticsearch
+es_scripts: false
+es_templates: false
+es_version_lock: false
+es_heap_size: 512m
+es_plugins:
+  - plugin: royrusso/elasticsearch-HQ

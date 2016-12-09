@@ -1,0 +1,31 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+  vars_files:
+    - vars/common.yml
+    - private_vars/common.yml
+  roles:
+    - os
+    - williamyeh.fluentd
+    - { role: fluentd, when: "'master' in group_names" }
+    - { role: ansible-elasticsearch,
+      when: "'master' in group_names",
+      es_instance_name: "log01",
+      es_data_dirs: "/opt/elasticsearch/data",
+      es_log_dir: "/opt/elasticsearch/log",
+      es_work_dir: "/opt/elasticsearch/temp",
+      es_config: {
+        node.name: "192.168.1.101",
+        cluster.name: "es_cluster",
+        discovery.zen.ping.unicast.hosts: "localhost:9301",
+        http.port: 9201,
+        transport.tcp.port: 9301,
+        node.data: false,
+        node.master: true,
+        bootstrp.mlockall: true,
+        discovery.zen.ping.unicast.enabled: false }
+    }
+    - { role: elasticsearch, when: "'master' in group_names" }
+    - { role: geerlingguy.kibana, when: "'master' in group_names" }
+

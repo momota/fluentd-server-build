@@ -1,0 +1,7 @@
+---
+- name: Give mapping configuration
+  uri:
+    url: http://localhost:9201/_template/logstatsh-tmpl
+    method: POST
+    body: "{{ lookup('file', 'mapping.json') }}"
+    body_format: json
